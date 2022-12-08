@@ -1,0 +1,26 @@
+nav{
+    background-color: rgb(147, 197, 201);
+padding: 10PX;
+}
+
+nav img{
+    width: 90px;
+}
+nav ul{
+    float: right;
+    list-style-type: none;
+}
+ul li{
+    display: inline-block;
+    padding: 10px;
+}
+li a{
+    color: #fff;
+    text-decoration: none;
+    
+}
+ul h2{
+    display: inline-block;
+    text-align: center;
+
+}

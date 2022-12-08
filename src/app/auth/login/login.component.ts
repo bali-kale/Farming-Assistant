@@ -34,25 +34,28 @@ export class LoginComponent implements OnInit {
     this.user.password = this.password;
     this.user.role = this.role;
 
-    this.authService.login(this.user)
-    .subscribe({
-      next: (res)=>{
+    this.authService.login(this.user).subscribe(res => {
 
-        console.log("response received");
-        this.route.navigate(['/'])
+      if(res == null) {
+        alert("Uername or password is wrong");
+        this.ngOnInit();
+      }else {
+        console.log("Login successful");
+        localStorage.setItem("token",res.token);
 
-       },
+        if(this.role == 'user') {
+          this.route.navigate(['/user']);
+        } 
 
-       error: (err)=>{
+        if( this.role == 'admin') {
+          this.route.navigate(['/admin']);
+        }
 
-        console.log("exception occured");
+      }
 
-        alert("Bad credentials, please enter valid emailid and password");
-
-       },
-
-       complete: () => console.log('completed')
-
+    }, err => {
+      alert("Login failed");
+      this.ngOnInit();
     })
     
     

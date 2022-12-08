@@ -31,24 +31,18 @@ export class SignupComponent implements OnInit {
     this.user.name = this.name;
     this.user.role = 'user';
 
-    this.authService.signUp(this.user)
-    .subscribe({
-      next: (res)=>{
-
-        console.log("Registration Successfull");
-        this.route.navigate(['/'])
-
-       },
-
-       error: (err)=>{
-
-        console.log("Registration failed");
-
+    this.authService.signUp(this.user).subscribe(res => {
+      if(res == null) {
         alert("Registration failed");
-
-       },
-
-       complete: () => console.log('completed')
+        this.ngOnInit();
+      }else {
+        console.log("Registration successful");
+        alert("Registration successful");
+        this.route.navigate(['/']);
+      }
+    }, err => {
+      alert("Registration failed.");
+      this.ngOnInit();
     })
 
   }

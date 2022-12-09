@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashb
     FooterComponent,
     UserDashboardComponent,
     AdminDashboardComponent,
+    HomepageComponent
 
   ],
   imports: [

@@ -1,8 +1,12 @@
+
 nav{
     background-color: rgb(147, 197, 201);
     padding: 10PX;
 }
+.img{
+    align-items: center;
 
+}
 nav img{
     width: 90px;
 }
@@ -10,14 +14,9 @@ nav ul{
     float:right;
     list-style-type: none;
 }
-ul li{
-    display: inline-block;
-    padding: 10px;
-    text-align: center;
-}
+
 li a{
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     
 }
-

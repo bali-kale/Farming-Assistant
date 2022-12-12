@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
+import { FormControl, FormGroup, Validators } from '@angular/forms'; 
 import { AuthService } from 'src/app/service/auth.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -23,6 +25,30 @@ export class SignupComponent implements OnInit {
     this.password = '';
     this.name = '';
   }
+  signupForm:any = new FormGroup({
+    name: new FormControl("", [Validators.required, Validators.maxLength(100), Validators.pattern("[A-Za-z].*")]),
+    username: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [Validators.required,Validators.minLength(5),Validators.maxLength(8)]),
+  
+    
+  });
+  signupSubmited(){
+    console.log(this.signupForm.get("name"));
+  }
+  get FullName() : FormControl{
+    return this.signupForm.get("name");
+
+  }
+  get EmailId() : FormControl{
+    return this.signupForm.get("username");
+
+  }
+  get Password() : FormControl{
+    return this.signupForm.get("password");
+
+  }
+
+
 
   signup() {
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms'; 
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,27 @@ export class LoginComponent implements OnInit {
     this.username = '';
     this.password = '';
   }
+  loginForm:any = new FormGroup({
+    username: new FormControl("", [Validators.required,Validators.maxLength(100), Validators.pattern("[a-zA-Z0-9].*")]),
+    password: new FormControl("", [Validators.required]),
+    role: new FormControl("", [Validators.required]),
+  })
+  loginSubmited(){
+    console.log(this.loginForm.get("username"));
+  }
+  get UserName() : FormControl{
+    return this.loginForm.get("username");
+
+  }
+  get Password() : FormControl{
+    return this.loginForm.get("password");
+
+  }
+  get Role() : FormControl{
+    return this.loginForm.get("role");
+
+  }
+
 
   login() {
     this.user.username = this.username;
@@ -37,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(res => {
 
       if(res == null) {
-        alert("Uername or password is wrong");
+        alert("Username or password is wrong");
         this.ngOnInit();
       }else {
         console.log("Login successful");
@@ -57,10 +79,6 @@ export class LoginComponent implements OnInit {
       alert("Login failed");
       this.ngOnInit();
     })
-    
-    
-  
-
   }
 
 }

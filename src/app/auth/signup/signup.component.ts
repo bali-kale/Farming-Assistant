@@ -15,10 +15,18 @@ export class SignupComponent implements OnInit {
   name : string = '';
   username : string = '';
   password : string = '';
+  role: string='';
 
   user : User = new User();
+  roles : string[];
 
-  constructor( private authService : AuthService, private route : Router) { }
+  constructor( private authService : AuthService, private route : Router) { 
+    this.roles = [
+      'admin',
+      'user'
+    ]
+
+  }
 
   ngOnInit(): void {
     this.username = '';
@@ -29,7 +37,8 @@ export class SignupComponent implements OnInit {
     name: new FormControl("", [Validators.required, Validators.maxLength(100), Validators.pattern("[A-Za-z].*")]),
     username: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [Validators.required,Validators.minLength(5),Validators.maxLength(8)]),
-  
+    role: new FormControl("", [Validators.required])
+
     
   });
   signupSubmited(){
@@ -47,6 +56,11 @@ export class SignupComponent implements OnInit {
     return this.signupForm.get("password");
 
   }
+  get Role() : FormControl{
+    return this.signupForm.get("role");
+
+  }
+
 
 
 
@@ -55,7 +69,7 @@ export class SignupComponent implements OnInit {
     this.user.username = this.username;
     this.user.password = this.password;
     this.user.name = this.name;
-    this.user.role = 'user';
+    this.user.role = this.role;
 
     this.authService.signUp(this.user).subscribe(res => {
       if(res == null) {

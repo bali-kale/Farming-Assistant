@@ -1,0 +1,27 @@
+h2{
+
+    color: #000;
+
+    font-size: 30px;
+    text-align: center;
+
+ }
+ .container {
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 0px;
+    background: local;
+   }
+   
+   img {
+     max-width: 30px;
+     max-height:30px;
+   }
+   
+   .text {
+     font-size: 30px;
+   }
+
+
+

@@ -52,11 +52,20 @@
                 </div>
               </div>
 
+              <div class="form-floating mb-3">
+                <select class="form-select" id="floatingSelect" aria-label="Role" name="role" formControlName="role" [(ngModel)]="role">
+                  <option *ngFor="let r of roles" [value]="r">{{r}}</option>
+                </select>
+                <label for="floatingSelect">Role</label>
+                <div class="form-text text-danger" *ngIf="Role.errors?.['required'] && Role.touched">
+                  Role is required
+                </div>
+              </div>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-outline-success me-md-2" type="button" (click)="signup()" >Register</button>
+                    <button class="btn btn-success me-md-2" type="button" [disabled]="signupForm.invalid" (click)="signup()" >Register</button>
                   </div>
 
-                  <a routerLink="/" class="text-primary" style="text-decoration: none;">Log In ? </a>
+                  <a routerLink="/" class="btn btn-info me-md-2" style="text-decoration: none;">Log In ? </a>
             </form>
         </div>
         <div class="col-md-2">
